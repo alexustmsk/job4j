@@ -3,6 +3,6 @@
  *
  * @author Alexander Ustyuzhanin (mailto:alexustmsk@gmail.com)
  * @version $Id$
- * @since 18.07.2018
+ * @since 0.1
  */
 package main.java.ru.job4j.calculate;
