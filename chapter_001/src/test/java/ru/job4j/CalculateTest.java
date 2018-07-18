@@ -22,7 +22,7 @@ public class CalculateTest {
      * Test add.
      */
     @Test
-    public void whenAddOneToOneThenTwo(){
+    public void whenAddOneToOneThenTwo() {
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));
         Calculate.main(null);
@@ -41,7 +41,7 @@ public class CalculateTest {
      * Test echo
      */
     @Test
-    public void whenTakeNameThenTreeEchoPlusName(){
+    public void whenTakeNameThenTreeEchoPlusName() {
         String input = "Alexander Ustyuzhanin";
         String expect = "Echo, echo, echo : Alexander Ustyuzhanin";
         Calculate calc = new Calculate();
