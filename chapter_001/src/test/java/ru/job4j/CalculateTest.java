@@ -28,12 +28,12 @@ public class CalculateTest {
         Calculate.main(null);
         assertThat(
                 out.toString(),
-        is(
-                String.format(
-                        "Hello World\r\n",
-                        System.getProperty("line.separator")
+                is(
+                        String.format(
+                                "Hello World\r\n",
+                                System.getProperty("line.separator")
+                        )
                 )
-        )
         );
     }
 
