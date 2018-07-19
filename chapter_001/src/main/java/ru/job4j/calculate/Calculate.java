@@ -1,4 +1,4 @@
-package main.java.ru.job4j.calculate;
+package ru.job4j.calculate;
 
 /**
  * Calculate.

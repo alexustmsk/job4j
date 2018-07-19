@@ -1,7 +1,8 @@
-package test.java.ru.job4j;
+package ru.job4j.calculate;
 
-import main.java.ru.job4j.calculate.Calculate;
+
 import org.junit.Test;
+import ru.job4j.calculate.Calculate;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
