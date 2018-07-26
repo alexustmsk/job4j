@@ -39,7 +39,8 @@ public class Triangle {
         double p = this.period(ab, ac, bc);
         if (this.exist(ab, ac, bc)) {
             // написать формулу для расчета площади треугольника.
-            rsl = Math.sqrt(p * (p - a) * (p - this.b) * (p - this.c));
+
+            rsl = Math.sqrt(p * (p - ab) * (p - ac) * (p - bc));
         }
         return rsl;
     }
@@ -55,8 +56,8 @@ public class Triangle {
      * @return
      */
     private boolean exist(double ab, double ac, double bc) {
-        if (ab < 0 && ac < 0 && bc < 0) {
-            System.out.println("Невозможно создать треугольник");
+        if (ab != 0 && ac != 0 && bc != 0) {
+            return true;
         }
         return false;
     }
