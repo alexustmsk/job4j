@@ -10,9 +10,6 @@ public class Max {
     }
 
     public int max(int first, int second, int third) {
-        int temp = this.max(first, second);
-        temp = this.max(first, third);
-        temp = this.max(second, third);
-        return temp;
+        return this.max(first, third) & this.max(second, third);
     }
 }
