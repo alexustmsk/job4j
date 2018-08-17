@@ -15,8 +15,10 @@ public class ArrayChar {
         boolean result = true;
         char[] value = prefix.toCharArray();
         //проверить, что массив data имеет первые элементы одинаковые с value
-        if (prefix.equals(value)) {
-            result = false;
+        for (int i = 0; i < value.length; i++) {
+            if (value[i] != (data[i])) {
+                result = false;
+            }
         }
         return result;
     }
