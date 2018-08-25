@@ -40,4 +40,16 @@ public class MatrixCheckTest {
         boolean result = check.mono(input);
         assertThat(result, is(true));
     }
+    @Test
+    public void whenDataMonoByTrueThenTrue3() {
+        MatrixCheck check = new MatrixCheck();
+        boolean[][] input = new boolean[][] {
+                {false, true, true, true},
+                {true, false, true, false},
+                {false, true, false, true},
+                {true, false, true, false}
+        };
+        boolean result = check.mono(input);
+        assertThat(result, is(true));
+    }
 }
