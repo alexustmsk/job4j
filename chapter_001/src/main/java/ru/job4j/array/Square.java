@@ -1,9 +1,12 @@
 package ru.job4j.array;
-
+/**
+ * Заполнение массива через цикл от 1 до bound возведенных в квадрат.
+ * @param bound массив.
+ * @return массив заполненый значениями в квадрат.
+ */
 public class Square {
     public int[] calculate(int bound) {
         int[] rst = new int[bound];
-        // заполнение массива через цикл от 1 до bound возведенных в квадрат
         for (int i = 0; i < rst.length; i++) {
             rst[i] = (i + 1) * (i + 1);
         }
