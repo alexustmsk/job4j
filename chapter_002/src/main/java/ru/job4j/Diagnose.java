@@ -1,8 +1,7 @@
 package ru.job4j;
 
 public class Diagnose {
-    public void Diagnose (Patient patient) {
-
+    public Diagnose heal(Patient patient) {
+        return null;
     }
-
 }

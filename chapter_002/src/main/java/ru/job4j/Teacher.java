@@ -5,6 +5,6 @@ public class Teacher extends Profession {
         super(name);
     }
     public Matter teach(Student name) {
-        return Matter;
+        return null;
     }
 }
