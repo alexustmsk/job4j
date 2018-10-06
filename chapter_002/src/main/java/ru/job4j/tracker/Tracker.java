@@ -1,5 +1,9 @@
 package ru.job4j.tracker;
 
+import ru.job4j.models.*;
+
+import java.util.Random;
+
 /**
  * @version $Id$
  * @since 0.1
@@ -8,12 +12,16 @@ public class Tracker {
     /**
      * Массив для хранение заявок.
      */
-    private Item[] items = new Items[100];
+    private Item[] items = new Item[100];
 
     /**
      * Указатель ячейки для новой заявки
      */
     private int position = 0;
+    /**
+     * Для генерации чисел.
+     */
+    private static final Random RN = new Random();
 
     /**
      * Метод public Item add(Item) добавляет заявку, переданную в аргументах
@@ -26,7 +34,7 @@ public class Tracker {
      */
     public Item add(Item item){
         item.setId(this.generateId());
-        item.items[this.position++] = item;
+        this.items[this.position++] = item;
         return item;
     }
     /**
@@ -35,7 +43,7 @@ public class Tracker {
      * @return Уникальный ключ.
      */
     private String generateId() {
-        return String.valueOf(System.curentTimeMillis() + RN.nextInt());
+        return String.valueOf(System.currentTimeMillis() + RN.nextInt());
     }
 
     /**
@@ -58,20 +66,32 @@ public class Tracker {
      *	Метод public Item[] findAll() возвращает копию массива this.items без null элементов;
      */
     public Item[] findAll(){
-
+        Item[] result = new Item[position];
+        for (int index = 0; index != this.position; index++) {
+            result[index] = this.items[index];
+        }
+        return result;
     }
     /**
      * Метод public Item[] findByName(String key) проверяет в цикле все элементы массива this.items,
      * сравнивая name (используя метод getName класса Item) с аргументом метода String key.
      */
     public Item[] findByName(String key){
-
+        return null;
     }
     /**
      * Метод public Item findById(String id) проверяет в цикле все элементы массива this.items,
      * сравнивая id с аргументом String id и возвращает найденный Item. Если Item не найден - возвращает null.
      */
     public Item findById(String id){
-
+        Item result = null;
+        for (Item item: items) {
+            if (item != null && item.getId().equals(id)) {
+                result = item;
+                break;
+            }
+        }
+    return result;
     }
+
 }
