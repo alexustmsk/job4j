@@ -11,7 +11,7 @@ public class Item {
 
     public long create;
 
-    public Item() {
+    public Item(String name, String description, long create) {
         this.name = name;
         this.description = description;
         this.create = create;
@@ -22,11 +22,11 @@ public class Item {
     }
 
     public String getDescription() {
-        return this.description;
+        return description;
     }
 
     public long getCreate() {
-        return this.create;
+        return create;
     }
 
     public String getId() {
