@@ -54,7 +54,7 @@ public class Tracker {
     public void replace(String id, Item item) {
         for (int index = 0; index < position; index++) {
             if (items[index].getId().equals(id)) {
-                this.items[position] = item;
+                this.items[index] = item;
                 break;
             }
         }
@@ -87,6 +87,12 @@ public class Tracker {
      * сравнивая name (используя метод getName класса Item) с аргументом метода String key.
      */
     public Item[] findByName(String key) {
+        for (int index = 0; index < position; index++) {
+            if (items[index].getName() == key) {
+
+                break;
+            }
+        }
         return null;
     }
     /**

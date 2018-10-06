@@ -30,4 +30,17 @@ public class TrackerTest {
         // Проверяем, что заявка с таким id имеет новые имя test2.
         assertThat(tracker.findById(previous.getId()).getName(), is("test2"));
     }
+    @Test
+    public void whenDeleteItemThenTrackerHasSameItem() {
+        Tracker tracker = new Tracker();
+        Item item = new Item("test1", "testDescription", 123L);
+        tracker.add(item);
+        Item item2 = new Item("test1", "testDescription", 123L);
+        tracker.add(item2);
+        Item item3 = new Item("test1", "testDescription", 123L);
+        tracker.add(item3);
+
+        tracker.delete(item.getId());
+        assertThat(tracker.findAll()[1], is(item3));
+    }
 }
