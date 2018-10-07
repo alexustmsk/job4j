@@ -35,12 +35,42 @@ public class TrackerTest {
         Tracker tracker = new Tracker();
         Item item = new Item("test1", "testDescription", 123L);
         tracker.add(item);
-        Item item2 = new Item("test1", "testDescription", 123L);
+        Item item2 = new Item("test2", "testDescription", 123L);
         tracker.add(item2);
-        Item item3 = new Item("test1", "testDescription", 123L);
+        Item item3 = new Item("test3", "testDescription", 123L);
         tracker.add(item3);
 
         tracker.delete(item.getId());
         assertThat(tracker.findAll()[1], is(item3));
+    }
+
+    @Test
+    public void whenDeleteItemThenTrackerArrayAll() {
+        Tracker tracker = new Tracker();
+        Item item1 = new Item("test11", "testDescription", 123L);
+        tracker.add(item1);
+        Item item2 = new Item("test22", "testDescription", 123L);
+        tracker.add(item2);
+        Item item3 = new Item("test33", "testDescription", 123L);
+        tracker.add(item3);
+
+        tracker.delete(item3.getId());
+
+        assertThat(tracker.findAll().length, is(3));
+    }
+
+    @Test
+    public void whenFindByNameThenReturnNewName() {
+        Tracker tracker = new Tracker();
+        Item item1 = new Item("test11", "testDescription", 123L);
+        tracker.add(item1);
+        Item item2 = new Item("test22", "testDescription", 123L);
+        tracker.add(item2);
+        Item item3 = new Item("test33", "testDescription", 123L);
+        tracker.add(item3);
+
+        tracker.findByName("test22");
+        // Проверяем, что происходит вызов метода
+        assertThat(tracker.findByName("test22")[0].getDescription(), is("testDescription"));
     }
 }

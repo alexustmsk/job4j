@@ -88,10 +88,9 @@ public class Tracker {
      */
     public Item[] findByName(String key) {
         for (int index = 0; index < position; index++) {
-            if (items[index].getName() == key) {
-
-                break;
-            }
+            if (items[index].getName().equals(key)) {
+                return items;
+                }
         }
         return null;
     }
