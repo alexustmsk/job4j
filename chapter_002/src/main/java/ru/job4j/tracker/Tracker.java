@@ -2,6 +2,7 @@ package ru.job4j.tracker;
 
 import ru.job4j.models.*;
 
+import java.util.Arrays;
 import java.util.Random;
 
 /**
@@ -55,6 +56,7 @@ public class Tracker {
         for (int index = 0; index < position; index++) {
             if (items[index].getId().equals(id)) {
                 this.items[index] = item;
+                item.setId(id);
                 break;
             }
         }
@@ -68,6 +70,7 @@ public class Tracker {
         for (int index = 0; index < position; index++) {
             if (items[index].getId().equals(id)) {
                 System.arraycopy(items, index + 1, items, index, items.length - index - 1);
+                position--;
                 break;
             }
         }
@@ -76,23 +79,21 @@ public class Tracker {
      *	Метод public Item[] findAll() возвращает копию массива this.items без null элементов;
      */
     public Item[] findAll() {
-        Item[] result = new Item[position];
-        for (int index = 0; index != this.position; index++) {
-            result[index] = this.items[index];
-        }
-        return result;
+        return Arrays.copyOf(this.items, this.position);
     }
     /**
      * Метод public Item[] findByName(String key) проверяет в цикле все элементы массива this.items,
      * сравнивая name (используя метод getName класса Item) с аргументом метода String key.
      */
     public Item[] findByName(String key) {
+        Item[] items = new Item[position];
+        int count = 0;
         for (int index = 0; index < position; index++) {
-            if (items[index].getName().equals(key)) {
-                return items;
+            if (this.items[index].getName().equals(key)) {
+                items[count++] = this.items[index];
                 }
         }
-        return null;
+        return Arrays.copyOf(items, count);
     }
     /**
      * Метод public Item findById(String id) проверяет в цикле все элементы массива this.items,

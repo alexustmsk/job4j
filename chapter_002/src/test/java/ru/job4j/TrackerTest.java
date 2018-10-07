@@ -56,21 +56,38 @@ public class TrackerTest {
 
         tracker.delete(item3.getId());
 
-        assertThat(tracker.findAll().length, is(3));
+        assertThat(tracker.findAll().length, is(2));
     }
 
     @Test
     public void whenFindByNameThenReturnNewName() {
         Tracker tracker = new Tracker();
-        Item item1 = new Item("test11", "testDescription", 123L);
-        tracker.add(item1);
-        Item item2 = new Item("test22", "testDescription", 123L);
-        tracker.add(item2);
-        Item item3 = new Item("test33", "testDescription", 123L);
-        tracker.add(item3);
+        Item []items = {new Item("test11", "testDescription", 123L),
+                new Item("test11", "testDescription", 123L),
+                new Item("test11", "testDescription", 123L)
+        };
 
-        tracker.findByName("test22");
+        tracker.add(items[0]);
+        tracker.add(items[1]);
+        tracker.add(items[2]);
+
         // Проверяем, что происходит вызов метода
-        assertThat(tracker.findByName("test22")[0].getDescription(), is("testDescription"));
+        assertThat(tracker.findByName("test11"), is(items));
     }
-}
+    @Test
+    public void whenFindByNameThenReturnNewName2() {
+        Tracker tracker = new Tracker();
+        Item []items = {new Item("test11", "testDescription", 123L),
+                new Item("test", "testDescription", 123L),
+                new Item("test11", "testDescription", 123L)
+        };
+
+        tracker.add(items[0]);
+        tracker.add(items[1]);
+        tracker.add(items[2]);
+
+        Item[] expect = {items[0], items[2]};
+        // Проверяем, что происходит вызов метода
+        assertThat(tracker.findByName("test11"), is(expect));
+    }
+ }
