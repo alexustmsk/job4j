@@ -16,7 +16,10 @@ public class Item {
         this.description = description;
         this.create = create;
     }
-
+    public Item(String name, String description) {
+        this.name = name;
+        this.description = description;
+    }
     public Item(String name, String description, long create) {
         this.name = name;
         this.description = description;
