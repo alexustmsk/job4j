@@ -64,7 +64,7 @@ public class StartUI {
                 case "1": findAll(); break;
                 case "2": replaceItem(); break;
                 case "3": deleteItem(); break;
-//                case "4": findById(); break;
+                case "4": findById(); break;
 //                case "5": findByName(); break;
 //                case "6": exitProgram(); break;
             }
@@ -147,6 +147,21 @@ public class StartUI {
         } else {
             System.out.println("Заявка с таким Id не найдена");
         }
+    }
+
+    /**
+     * Метод реализует поиск заявки по Id
+     */
+    private void findById() {
+        System.out.println("------------ Поиск заявки по Id --------------");
+        String id = this.input.ask("Введите Id заявки: ");
+        if (id != null) {
+            System.out.println("Заявка с таким Id найдена:");
+            System.out.println("Имя заявки: " + this.tracker.findById(id).getName() + " Описание заявки: " + this.tracker.findById(id).getDescription());
+        } else {
+            System.out.println("Заявка с таким Id не найдена");
+        }
+
     }
 
     private void showMenu() {
