@@ -63,7 +63,7 @@ public class StartUI {
                 case "0": createItem(); break;
                 case "1": findAll(); break;
                 case "2": replaceItem(); break;
-//                case "3": deleteItem(); break;
+                case "3": deleteItem(); break;
 //                case "4": findById(); break;
 //                case "5": findByName(); break;
 //                case "6": exitProgram(); break;
@@ -125,8 +125,28 @@ public class StartUI {
             newItem.setId(item.getId());
             this.tracker.replace(id, newItem);
             System.out.println(" Заявка с Id изменена");
-        } else
+        } else {
             System.out.println("Заявка с таким Id не найдена");
+        }
+    }
+
+    /**
+     * Метод реализует удаление заявки
+     */
+    private void deleteItem() {
+        System.out.println("------------ Удаление заявки --------------");
+        String id = this.input.ask("Введите Id заявки: ");
+        Item item = this.tracker.findById(id);
+        if (item != null) {
+            System.out.println("Заявка с именем " + item.getId() + " будет удалена");
+            String pp = this.input.ask("Подтверждаете удаление: y/n ");
+            if (pp.equals("y")) {
+                this.tracker.delete(id);
+                System.out.println("Заявка с Id " + item.getId() + " удалена");
+            }
+        } else {
+            System.out.println("Заявка с таким Id не найдена");
+        }
     }
 
     private void showMenu() {
