@@ -62,11 +62,11 @@ public class StartUI {
             switch (answer) {
                 case "0": createItem(); break;
                 case "1": findAll(); break;
-                case "2": replaceItem(); break;
-                case "3": deleteItem(); break;
-                case "4": findById(); break;
-                case "5": findByName(); break;
-                case "6": exitProgram(); break;
+//                case "2": replaceItem(); break;
+//                case "3": deleteItem(); break;
+//                case "4": findById(); break;
+//                case "5": findByName(); break;
+//                case "6": exitProgram(); break;
             }
 //            if (ADD.equals(answer)) {
 //                // добавление заявки вынесено в отдельный метод.
@@ -97,6 +97,17 @@ public class StartUI {
         Item item = new Item(name, desc);
         this.tracker.add(item);
         System.out.println("------------ Новая заявка с getId : " + item.getId() + "-----------");
+    }
+
+    /**
+     * Метод реализует вывод всех заявок
+     */
+    private void findAll(){
+        System.out.println("------------ Заявки --------------");
+        System.out.println("Всего заявок: " + this.tracker.findAll().length);
+        for (int i = 0; i < this.tracker.findAll().length; i++) {
+            System.out.println(i + 1 +". " + "Имя заявки: " + tracker.findAll()[i].getName() +" Описание: " + tracker.findAll()[i].getDescription());
+        }
     }
 
     private void showMenu() {
