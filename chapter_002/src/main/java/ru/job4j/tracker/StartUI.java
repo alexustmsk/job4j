@@ -62,7 +62,7 @@ public class StartUI {
             switch (answer) {
                 case "0": createItem(); break;
                 case "1": findAll(); break;
-//                case "2": replaceItem(); break;
+                case "2": replaceItem(); break;
 //                case "3": deleteItem(); break;
 //                case "4": findById(); break;
 //                case "5": findByName(); break;
@@ -102,12 +102,31 @@ public class StartUI {
     /**
      * Метод реализует вывод всех заявок
      */
-    private void findAll(){
-        System.out.println("------------ Заявки --------------");
+    private void findAll() {
+        System.out.println("------------ Все заявки --------------");
         System.out.println("Всего заявок: " + this.tracker.findAll().length);
         for (int i = 0; i < this.tracker.findAll().length; i++) {
-            System.out.println(i + 1 +". " + "Имя заявки: " + tracker.findAll()[i].getName() +" Описание: " + tracker.findAll()[i].getDescription());
+            System.out.println(i + 1 +". " + "Id заявки: " + tracker.findAll()[i].getId() + " Имя заявки: " + tracker.findAll()[i].getName() +" Описание: " + tracker.findAll()[i].getDescription());
         }
+    }
+
+    /**
+     * Метод реализует замену заявки
+     */
+    private void replaceItem() {
+        System.out.println("------------ Редактирование заявки --------------");
+        String id = this.input.ask("Введите Id заявки: ");
+        Item item = this.tracker.findById(id);
+        if (item != null) {
+            System.out.println("Заявка с именем " + item.getId() + " будет изменена");
+            String name = this.input.ask("Введите имя новой заявки: ");
+            String desc = this.input.ask("Введите описание новой заявки: ");
+            Item newItem = new Item(name, desc);
+            newItem.setId(item.getId());
+            this.tracker.replace(id, newItem);
+            System.out.println(" Заявка с Id изменена");
+        } else
+            System.out.println("Заявка с таким Id не найдена");
     }
 
     private void showMenu() {
