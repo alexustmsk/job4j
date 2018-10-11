@@ -65,7 +65,7 @@ public class StartUI {
                 case "2": replaceItem(); break;
                 case "3": deleteItem(); break;
                 case "4": findById(); break;
-//                case "5": findByName(); break;
+                case "5": findByName(); break;
 //                case "6": exitProgram(); break;
             }
 //            if (ADD.equals(answer)) {
@@ -161,7 +161,19 @@ public class StartUI {
         } else {
             System.out.println("Заявка с таким Id не найдена");
         }
+    }
 
+    /**
+     * Метод реализуеи поиск заявки по Имени
+     */
+    private void findByName() {
+        System.out.println("------------ Поиск заявки по Имени --------------");
+        String name = this.input.ask("Введите Имя заявки: ");
+        if (name != null) {
+            System.out.println("Найдено кол-во заявок: " + this.tracker.findByName(name).length);
+        } else {
+            System.out.println("Заявка с таким Именем не найдена");
+        }
     }
 
     private void showMenu() {
