@@ -62,7 +62,7 @@ public class TrackerTest {
     @Test
     public void whenFindByNameThenReturnNewName() {
         Tracker tracker = new Tracker();
-        Item []items = {new Item("test11", "testDescription", 123L),
+        Item[] items = {new Item("test11", "testDescription", 123L),
                 new Item("test11", "testDescription", 123L),
                 new Item("test11", "testDescription", 123L)
         };
@@ -77,7 +77,7 @@ public class TrackerTest {
     @Test
     public void whenFindByNameThenReturnNewName2() {
         Tracker tracker = new Tracker();
-        Item []items = {new Item("test11", "testDescription", 123L),
+        Item[] items = {new Item("test11", "testDescription", 123L),
                 new Item("test", "testDescription", 123L),
                 new Item("test11", "testDescription", 123L)
         };

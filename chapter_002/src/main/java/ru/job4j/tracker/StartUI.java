@@ -66,24 +66,9 @@ public class StartUI {
                 case "3": deleteItem(); break;
                 case "4": findById(); break;
                 case "5": findByName(); break;
-//                case "6": exitProgram(); break;
+                case "6": exitProgram(); break;
+                    default: break;
             }
-//            if (ADD.equals(answer)) {
-//                // добавление заявки вынесено в отдельный метод.
-//                this.createItem();
-//            } else if (...){
-//
-//            } else if (EXIT.equals(answer)) {
-//                exit = true;
-//            }
-        }
-
-        String name = input.ask("Please, enter the tak's name:");
-
-        Tracker tracker = new Tracker();
-        tracker.add(new Task(name, "firs desc"));
-        for (Item item : tracker.findAll()) {
-            System.out.println(item.getName());
         }
     }
 
@@ -106,7 +91,7 @@ public class StartUI {
         System.out.println("------------ Все заявки --------------");
         System.out.println("Всего заявок: " + this.tracker.findAll().length);
         for (int i = 0; i < this.tracker.findAll().length; i++) {
-            System.out.println(i + 1 +". " + "Id заявки: " + tracker.findAll()[i].getId() + " Имя заявки: " + tracker.findAll()[i].getName() +" Описание: " + tracker.findAll()[i].getDescription());
+            System.out.println(i + 1 + ". " + "Id заявки: " + tracker.findAll()[i].getId() + " Имя заявки: " + tracker.findAll()[i].getName() + " Описание: " + tracker.findAll()[i].getDescription());
         }
     }
 
@@ -164,7 +149,7 @@ public class StartUI {
     }
 
     /**
-     * Метод реализуеи поиск заявки по Имени
+     * Метод реализует поиск заявки по Имени
      */
     private void findByName() {
         System.out.println("------------ Поиск заявки по Имени --------------");
@@ -173,6 +158,17 @@ public class StartUI {
             System.out.println("Найдено кол-во заявок: " + this.tracker.findByName(name).length);
         } else {
             System.out.println("Заявка с таким Именем не найдена");
+        }
+    }
+
+    /**
+     * Метод реализует выход из программы
+     */
+    private void exitProgram() {
+        System.out.println("------------ Выход из программы --------------");
+        String answer = this.input.ask("Подтверждаете выход из программы?: y/n ");
+        if (answer.equals("y")) {
+                System.exit(0);
         }
     }
 
