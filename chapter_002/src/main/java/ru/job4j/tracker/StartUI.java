@@ -40,9 +40,14 @@ public class StartUI {
      * Хранилище заявок.
      */
     private final Tracker tracker;
+    /**
+     * Флаг для работы программы.
+     */
+    private boolean exit = true;
 
     /**
      * Конструктор инициализирующий поля.
+     *
      * @param input
      * @param tracker
      */
@@ -55,19 +60,33 @@ public class StartUI {
      * Основной цикл программы.
      */
     public void init() {
-        boolean exit = false;
-        while (!exit) {
+        while (exit) {
             this.showMenu();
             String answer = this.input.ask("Введите пункт меню: ");
             switch (answer) {
-                case "0": createItem(); break;
-                case "1": findAll(); break;
-                case "2": replaceItem(); break;
-                case "3": deleteItem(); break;
-                case "4": findById(); break;
-                case "5": findByName(); break;
-                case "6": exitProgram(); break;
-                    default: break;
+                case ADD:
+                    createItem();
+                    break;
+                case FINDALL:
+                    findAll();
+                    break;
+                case REPLACE:
+                    replaceItem();
+                    break;
+                case DELETE:
+                    deleteItem();
+                    break;
+                case FINDID:
+                    findById();
+                    break;
+                case FINDNAME:
+                    findByName();
+                    break;
+                case EXIT:
+                    exitProgram();
+                    break;
+                default:
+                    break;
             }
         }
     }
@@ -89,16 +108,19 @@ public class StartUI {
      */
     private void findAll() {
         System.out.println("------------ Все заявки --------------");
+        Item[] thisTrackerFindAll = this.tracker.findAll();
         System.out.println("Всего заявок: " + this.tracker.findAll().length);
-        for (int i = 0; i < this.tracker.findAll().length; i++) {
-            System.out.println(i + 1 + ". " + "Id заявки: " + tracker.findAll()[i].getId() + " Имя заявки: " + tracker.findAll()[i].getName() + " Описание: " + tracker.findAll()[i].getDescription());
+        for (int i = 0; i < thisTrackerFindAll.length; i++) {
+            System.out.println(i + 1 + ". " + "Id заявки: " + thisTrackerFindAll[i].getId()
+                    + " Имя заявки: " + thisTrackerFindAll[i].getName()
+                                + " Описание: " + thisTrackerFindAll[i].getDescription());
         }
     }
 
     /**
      * Метод реализует замену заявки
      */
-    private void replaceItem() {
+    private boolean replaceItem() {
         System.out.println("------------ Редактирование заявки --------------");
         String id = this.input.ask("Введите Id заявки: ");
         Item item = this.tracker.findById(id);
@@ -107,42 +129,46 @@ public class StartUI {
             String name = this.input.ask("Введите имя новой заявки: ");
             String desc = this.input.ask("Введите описание новой заявки: ");
             Item newItem = new Item(name, desc);
-            newItem.setId(item.getId());
             this.tracker.replace(id, newItem);
             System.out.println(" Заявка с Id изменена");
         } else {
             System.out.println("Заявка с таким Id не найдена");
         }
+        return true;
     }
 
     /**
      * Метод реализует удаление заявки
      */
-    private void deleteItem() {
+    private boolean deleteItem() {
         System.out.println("------------ Удаление заявки --------------");
         String id = this.input.ask("Введите Id заявки: ");
         Item item = this.tracker.findById(id);
         if (item != null) {
             System.out.println("Заявка с именем " + item.getId() + " будет удалена");
-            String pp = this.input.ask("Подтверждаете удаление: y/n ");
-            if (pp.equals("y")) {
+            String theConfir = this.input.ask("Подтверждаете удаление: y/n ");
+            if (theConfir.equals("y")) {
                 this.tracker.delete(id);
                 System.out.println("Заявка с Id " + item.getId() + " удалена");
             }
         } else {
             System.out.println("Заявка с таким Id не найдена");
         }
+        return true;
     }
 
     /**
      * Метод реализует поиск заявки по Id
      */
+
     private void findById() {
+        //Item thisTrackerFindId = this.tracker.findById();
         System.out.println("------------ Поиск заявки по Id --------------");
         String id = this.input.ask("Введите Id заявки: ");
         if (id != null) {
             System.out.println("Заявка с таким Id найдена:");
-            System.out.println("Имя заявки: " + this.tracker.findById(id).getName() + " Описание заявки: " + this.tracker.findById(id).getDescription());
+            System.out.println("Имя заявки: " + this.tracker.findById(id).getName()
+                    + " Описание заявки: " + this.tracker.findById(id).getDescription());
         } else {
             System.out.println("Заявка с таким Id не найдена");
         }
@@ -168,7 +194,7 @@ public class StartUI {
         System.out.println("------------ Выход из программы --------------");
         String answer = this.input.ask("Подтверждаете выход из программы?: y/n ");
         if (answer.equals("y")) {
-                System.exit(0);
+            exit = false;
         }
     }
 
@@ -183,8 +209,10 @@ public class StartUI {
         System.out.println("6. Exit Program");
         System.out.println("Select:");
     }
+
     /**
      * Запуск программы.
+     *
      * @param args
      */
     public static void main(String[] args) {

@@ -31,6 +31,7 @@ public class Tracker {
      * Уникальный ключ нужно генерировать на основании времени и произвольного числа.
      * item.setId(this.generateId());
      * В качестве ключа нельзя использовать индекс.
+     *
      * @param item новая заявка
      */
     public Item add(Item item) {
@@ -38,9 +39,11 @@ public class Tracker {
         this.items[this.position++] = item;
         return item;
     }
+
     /**
      * Метод генерирует уникальный ключ для заявки.
      * Так как у заявки нет уникальности полей, имени и описание. Для идентификации нам нужен уникальный ключ.
+     *
      * @return Уникальный ключ.
      */
     private String generateId() {
@@ -61,6 +64,7 @@ public class Tracker {
             }
         }
     }
+
     /**
      * Метод public void delete(String id) должен удалить ячейку в массиве this.items.
      * Для этого необходимо найти ячейку в массиве по id.  Далее сместить все значения
@@ -75,12 +79,14 @@ public class Tracker {
             }
         }
     }
+
     /**
-     *	Метод public Item[] findAll() возвращает копию массива this.items без null элементов;
+     * Метод public Item[] findAll() возвращает копию массива this.items без null элементов;
      */
     public Item[] findAll() {
         return Arrays.copyOf(this.items, this.position);
     }
+
     /**
      * Метод public Item[] findByName(String key) проверяет в цикле все элементы массива this.items,
      * сравнивая name (используя метод getName класса Item) с аргументом метода String key.
@@ -91,23 +97,24 @@ public class Tracker {
         for (int index = 0; index < position; index++) {
             if (this.items[index].getName().equals(key)) {
                 items[count++] = this.items[index];
-                }
+            }
         }
         return Arrays.copyOf(items, count);
     }
+
     /**
      * Метод public Item findById(String id) проверяет в цикле все элементы массива this.items,
      * сравнивая id с аргументом String id и возвращает найденный Item. Если Item не найден - возвращает null.
      */
     public Item findById(String id) {
         Item result = null;
-        for (Item item: items) {
+        for (Item item : items) {
             if (item != null && item.getId().equals(id)) {
                 result = item;
                 break;
             }
         }
-    return result;
+        return result;
     }
 
 }
