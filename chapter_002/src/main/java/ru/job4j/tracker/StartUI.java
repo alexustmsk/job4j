@@ -4,61 +4,23 @@ import ru.job4j.models.*;
 
 public class StartUI {
 
-    /**
-     * Константа меню для добавления новой заявки.
-     */
     private static final String ADD = "0";
-    /**
-     * Константа меню для вывода всех заявок.
-     */
     private static final String FINDALL = "1";
-    /**
-     * Константа меню для изменения заявок.
-     */
     private static final String REPLACE = "2";
-    /**
-     * Константа меню для удаления заявок.
-     */
     private static final String DELETE = "3";
-    /**
-     * Константа меню для поиска по ID заявок.
-     */
     private static final String FINDID = "4";
-    /**
-     * Константа меню для поиска по имени заявок.
-     */
     private static final String FINDNAME = "5";
-    /**
-     * Константа для выхода из цикла.
-     */
     private static final String EXIT = "6";
-    /**
-     * Получение данных от пользователя
-     */
+
     private final Input input;
-    /**
-     * Хранилище заявок.
-     */
     private final Tracker tracker;
-    /**
-     * Флаг для работы программы.
-     */
     private boolean exit = true;
 
-    /**
-     * Конструктор инициализирующий поля.
-     *
-     * @param input
-     * @param tracker
-     */
     public StartUI(Input input, Tracker tracker) {
         this.input = input;
         this.tracker = tracker;
     }
 
-    /**
-     * Основной цикл программы.
-     */
     public void init() {
         while (exit) {
             this.showMenu();
@@ -91,9 +53,6 @@ public class StartUI {
         }
     }
 
-    /**
-     * Метод реализует добовление новой заявки в хранилище.
-     */
     private void createItem() {
         System.out.println("------------ Добавление новой заявки --------------");
         String name = this.input.ask("Введите имя заявки: ");
@@ -103,9 +62,6 @@ public class StartUI {
         System.out.println("------------ Новая заявка с getId : " + item.getId() + "-----------");
     }
 
-    /**
-     * Метод реализует вывод всех заявок
-     */
     private void findAll() {
         System.out.println("------------ Все заявки --------------");
         Item[] thisTrackerFindAll = this.tracker.findAll();
@@ -117,10 +73,7 @@ public class StartUI {
         }
     }
 
-    /**
-     * Метод реализует замену заявки
-     */
-    private boolean replaceItem() {
+    private void replaceItem() {
         System.out.println("------------ Редактирование заявки --------------");
         String id = this.input.ask("Введите Id заявки: ");
         Item item = this.tracker.findById(id);
@@ -134,13 +87,9 @@ public class StartUI {
         } else {
             System.out.println("Заявка с таким Id не найдена");
         }
-        return true;
     }
 
-    /**
-     * Метод реализует удаление заявки
-     */
-    private boolean deleteItem() {
+    private void deleteItem() {
         System.out.println("------------ Удаление заявки --------------");
         String id = this.input.ask("Введите Id заявки: ");
         Item item = this.tracker.findById(id);
@@ -154,29 +103,21 @@ public class StartUI {
         } else {
             System.out.println("Заявка с таким Id не найдена");
         }
-        return true;
     }
 
-    /**
-     * Метод реализует поиск заявки по Id
-     */
-
     private void findById() {
-        //Item thisTrackerFindId = this.tracker.findById();
         System.out.println("------------ Поиск заявки по Id --------------");
         String id = this.input.ask("Введите Id заявки: ");
+        Item found = this.tracker.findById(id);
         if (id != null) {
             System.out.println("Заявка с таким Id найдена:");
-            System.out.println("Имя заявки: " + this.tracker.findById(id).getName()
-                    + " Описание заявки: " + this.tracker.findById(id).getDescription());
+            System.out.println("Имя заявки: " + found.getName()
+                    + " Описание заявки: " + found.getDescription());
         } else {
             System.out.println("Заявка с таким Id не найдена");
         }
     }
 
-    /**
-     * Метод реализует поиск заявки по Имени
-     */
     private void findByName() {
         System.out.println("------------ Поиск заявки по Имени --------------");
         String name = this.input.ask("Введите Имя заявки: ");
@@ -187,9 +128,6 @@ public class StartUI {
         }
     }
 
-    /**
-     * Метод реализует выход из программы
-     */
     private void exitProgram() {
         System.out.println("------------ Выход из программы --------------");
         String answer = this.input.ask("Подтверждаете выход из программы?: y/n ");
@@ -210,11 +148,6 @@ public class StartUI {
         System.out.println("Select:");
     }
 
-    /**
-     * Запуск программы.
-     *
-     * @param args
-     */
     public static void main(String[] args) {
         new StartUI(new ConsoleInput(), new Tracker()).init();
     }
