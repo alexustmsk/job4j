@@ -67,10 +67,14 @@ public class StartUI {
         Item[] thisTrackerFindAll = this.tracker.findAll();
         System.out.println("Всего заявок: " + this.tracker.findAll().length);
         for (int i = 0; i < thisTrackerFindAll.length; i++) {
-            System.out.println(i + 1 + ". " + "Id заявки: " + thisTrackerFindAll[i].getId()
-                    + " Имя заявки: " + thisTrackerFindAll[i].getName()
-                                + " Описание: " + thisTrackerFindAll[i].getDescription());
-        }
+//            System.out.println(i + 1 + ". " + "Id заявки: " + thisTrackerFindAll[i].getId()
+//                    + " Имя заявки: " + thisTrackerFindAll[i].getName()
+//                                + " Описание: " + thisTrackerFindAll[i].getDescription());
+//        }
+            // Простая нумерация заявок без Id
+        System.out.println("1. " + " Имя заявки: " + thisTrackerFindAll[i].getName()
+                + " Описание: " + thisTrackerFindAll[i].getDescription());
+    }
     }
 
     private void replaceItem() {
