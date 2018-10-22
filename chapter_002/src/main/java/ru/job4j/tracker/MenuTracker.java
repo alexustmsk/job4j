@@ -42,9 +42,18 @@ public class MenuTracker {
         }
     }
 
-//    public void init() {
-//        //how to fill it.
-//    }
+    public void init() {
+        MenuTracker menu = new MenuTracker(this.input, this.tracker);
+        List<Integer> range = new ArrayList<Integer>();
+        menu.fillAction();
+        for (int i = 0; i < menu.getActionLentgh(); i++) {
+            range.add(i);
+        }
+//        do {
+//            menu.show();
+//            menu.select(input.ask("Select: ", range));
+//        } while(!"y".equals(this.input.ask("Exit? (y/n)")));
+    }
 
     private static class AddItem implements UserAction {
         public int key() {
