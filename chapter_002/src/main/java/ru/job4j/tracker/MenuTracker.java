@@ -7,6 +7,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 class EditItems implements UserAction {
+    public EditItems(int i, String nameMenu) {
+    }
+
     public int key() {
         return 0;
     }
@@ -51,10 +54,10 @@ public class MenuTracker {
         this.actions.add(this.new AddItem(0, "Add program"));
         this.actions.add(new MenuTracker.ShowItem(1, "Show all items"));
         this.actions.add(new EditItems(2, "Edit item"));
-        this.actions.add(new DeleteItem(3, "Delete item"));
-        this.actions.add(new FindItemById(4, "Find item by Id"));
-        this.actions.add(new FindItemsByName(5, "Find items by name"));
-        this.actions.add(new ExitProgram(6, "Exit Program"));
+//        this.actions.add(new DeleteItem(3, "Delete item"));
+//        this.actions.add(new FindItemById(4, "Find item by Id"));
+//        this.actions.add(new FindItemsByName(5, "Find items by name"));
+//        this.actions.add(new ExitProgram(6, "Exit Program"));
     }
 
     public void select(int key) {
@@ -69,20 +72,10 @@ public class MenuTracker {
         }
     }
 
-    public void init() {
-        MenuTracker menu = new MenuTracker(this.input, this.tracker);
-        List<Integer> range = new ArrayList<>();
-        menu.fillAction();
-        for (int i = 0; i < menu.getActionLentgh(); i++) {
-            range.add(i);
-        }
-        do {
-            menu.show();
-            menu.select(input.ask("Select: ", range));
-        } while(!"y".equals(this.input.ask("Exit? (y/n)")));
-    }
-
     private class AddItem implements UserAction {
+        public AddItem(int i, String nameMenu) {
+        }
+
         public int key() {
             return 0;
         }
@@ -99,6 +92,9 @@ public class MenuTracker {
     }
 
     private static class ShowItem implements UserAction {
+        public ShowItem(int i, String nameMenu) {
+        }
+
         public int key() {
             return 1;
         }
@@ -114,8 +110,5 @@ public class MenuTracker {
         }
     }
 
-        public static void main(String[] args) {
-        Input input = new ConsoleInput();
-        new MenuTracker(input, new Tracker()).init();
-    }
+
 }

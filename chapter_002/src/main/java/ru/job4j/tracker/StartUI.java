@@ -1,12 +1,11 @@
-//package ru.job4j.tracker;
-//
-//import ru.job4j.models.*;
-//
-//import java.util.ArrayList;
-//import java.util.List;
-//
-//public class StartUI {
-//
+package ru.job4j.tracker;
+
+import ru.job4j.models.*;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class StartUI {
 //    private static final String ADD = "0";
 //    private static final String FINDALL = "1";
 //    private static final String REPLACE = "2";
@@ -14,24 +13,28 @@
 //    private static final String FINDID = "4";
 //    private static final String FINDNAME = "5";
 //    private static final String EXIT = "6";
-//
-//    private Input input;
-//    private Tracker tracker;
-//
-//    public StartUI(Input input) {
-//        this.input = input;
-//        this.tracker = tracker;
-//    }
-//
-//    public void init() {
-//        MenuTracker menu = new MenuTracker(this.input, this.tracker);
-//
-//        do {
-//            menu.show();
-//            menu.select(input.ask("Select: ", range));
-//        } while(!"y".equals(this.input.ask("Exit? (y/n)")));
-//    }
-//
+    private Input input;
+    private Tracker tracker;
+
+    public StartUI(Input input) {
+        this.input = input;
+        this.tracker = tracker;
+    }
+
+    public void init() {
+        MenuTracker menu = new MenuTracker(this.input, this.tracker);
+        List<Integer> range = new ArrayList<>();
+        menu.fillAction();
+        for (int i = 0; i < menu.getActionLentgh(); i++) {
+            range.add(i);
+        }
+        do {
+            menu.show();
+            menu.select(input.ask("Select: ", range));
+        } while (!"y".equals(this.input.ask("Exit? (y/n)")));
+    }
+
+    //
 ////    private void exitProgram() {
 ////        System.out.println("------------ Выход из программы --------------");
 ////        String answer = this.input.ask("Подтверждаете выход из программы?: y/n ");
@@ -53,8 +56,8 @@
 //        System.out.println("Select:");
 //    }
 //
-//    public static void main(String[] args) {
-//        new StartUI(new ConsoleInput()).init();
-//    }
-//
-//}
+    public static void main(String[] args) {
+        Input input = new ConsoleInput();
+        new StartUI(new ConsoleInput(), new Tracker()).init();
+    }
+}
