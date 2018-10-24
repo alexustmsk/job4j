@@ -11,7 +11,7 @@ class EditItems implements UserAction {
     }
 
     public int key() {
-        return 0;
+        return 2;
     }
 
     public void execute(Input input, Tracker tracker) {
