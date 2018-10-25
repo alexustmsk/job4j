@@ -1,14 +1,11 @@
 package ru.job4j.tracker;
 
 import ru.job4j.models.Item;
-import ru.job4j.models.Task;
 
 import java.util.ArrayList;
 import java.util.List;
 
 class EditItems implements UserAction {
-    public EditItems(int i, String nameMenu) {
-    }
 
     public int key() {
         return 2;
@@ -45,19 +42,19 @@ public class MenuTracker {
         this.tracker = tracker;
     }
 
-    public int getActionLentgh() {
+    public int getActionLength() {
         return this.actions.size();
     }
 
     public void fillAction() {
         System.out.println("Menu: ");
-        this.actions.add(this.new AddItem(0, "Add program"));
-        this.actions.add(new MenuTracker.ShowItem(1, "Show all items"));
-        this.actions.add(new EditItems(2, "Edit item"));
-//        this.actions.add(new DeleteItem(3, "Delete item"));
-//        this.actions.add(new FindItemById(4, "Find item by Id"));
-//        this.actions.add(new FindItemsByName(5, "Find items by name"));
-//        this.actions.add(new ExitProgram(6, "Exit Program"));
+        this.actions.add(this.new AddItem());
+        this.actions.add(new MenuTracker.ShowItem());
+        this.actions.add(new EditItems());
+        this.actions.add(new DeleteItemAction());
+        this.actions.add(new FindByIdAction());
+        this.actions.add(new FindByNameAction());
+
     }
 
     public void select(int key) {
@@ -73,17 +70,18 @@ public class MenuTracker {
     }
 
     private class AddItem implements UserAction {
-        public AddItem(int i, String nameMenu) {
-        }
 
         public int key() {
             return 0;
         }
 
         public void execute(Input input, Tracker tracker) {
-            String name = input.ask("Please, enter the task's name: ");
-            String desc = input.ask("Please, enter the task's desc: ");
-            tracker.add(new Task(name, desc));
+            System.out.println("------------ Добавление новой заявки --------------");
+            String name = input.ask("Введите имя заявки: ");
+            String desc = input.ask("Введите описание заявки: ");
+            Item item = new Item(name, desc);
+            tracker.add(item);
+            System.out.println("------------ Новая заявка с getId : " + item.getId() + "-----------");
         }
 
         public String info() {
@@ -92,16 +90,19 @@ public class MenuTracker {
     }
 
     private static class ShowItem implements UserAction {
-        public ShowItem(int i, String nameMenu) {
-        }
 
         public int key() {
             return 1;
         }
 
         public void execute(Input input, Tracker tracker) {
-            for (Item item : tracker.findAll()) {
-                System.out.println(String.format("%s. %s", item.getId(), item.getName()));
+            System.out.println("------------ Все заявки --------------");
+            Item[] thisTrackerFindAll = tracker.findAll();
+            System.out.println("Всего заявок: " + tracker.findAll().length);
+            for (int i = 0; i < thisTrackerFindAll.length; i++) {
+                System.out.println("Id заявки: " + thisTrackerFindAll[i].getId()
+                        + " Имя заявки: " + thisTrackerFindAll[i].getName()
+                        + " Описание: " + thisTrackerFindAll[i].getDescription());
             }
         }
 
@@ -110,5 +111,85 @@ public class MenuTracker {
         }
     }
 
+    public class DeleteItemAction implements UserAction {
 
+        @Override
+        public int key() {
+            return 3;
+        }
+
+        @Override
+        public void execute(Input input, Tracker tracker) {
+            System.out.println("------------ Удаление заявки --------------");
+            String id = input.ask("Введите Id заявки: ");
+            Item item = tracker.findById(id);
+            if (item != null) {
+                System.out.println("Заявка с именем " + item.getId() + " будет удалена");
+                String theConfir = input.ask("Подтверждаете удаление: y/n ");
+                if (theConfir.equals("y")) {
+                    tracker.delete(id);
+                    System.out.println("Заявка с Id " + item.getId() + " удалена");
+                }
+            } else {
+                System.out.println("Заявка с таким Id не найдена");
+            }
+        }
+
+        @Override
+        public String info() {
+            return String.format("%s. %s", this.key(), "Delete the item.");
+        }
+    }
+
+    public class FindByIdAction implements UserAction {
+
+        @Override
+        public int key() {
+            return 4;
+        }
+
+        @Override
+        public void execute(Input input, Tracker tracker) {
+            System.out.println("------------ Поиск заявки по Id --------------");
+            String id = input.ask("Введите Id заявки: ");
+            Item found = tracker.findById(id);
+            if (id != null) {
+                System.out.println("Заявка с таким Id найдена:");
+                System.out.println("Имя заявки: " + found.getName()
+                        + " Описание заявки: " + found.getDescription());
+            } else {
+                System.out.println("Заявка с таким Id не найдена");
+            }
+        }
+
+        @Override
+        public String info() {
+            return String.format("%s. %s", this.key(), "Find the item (ID).");
+        }
+
+    }
+
+    public class FindByNameAction implements UserAction {
+
+        @Override
+        public int key() {
+            return 5;
+        }
+
+        @Override
+        public void execute(Input input, Tracker tracker) {
+            System.out.println("------------ Поиск заявки по Имени --------------");
+            String name = input.ask("Введите Имя заявки: ");
+            if (name != null) {
+                System.out.println("Найдено кол-во заявок: " + tracker.findByName(name).length);
+            } else {
+                System.out.println("Заявка с таким Именем не найдена");
+            }
+        }
+
+        @Override
+        public String info() {
+            return String.format("%s. %s", this.key(), "Find the item (Name).");
+        }
+    }
 }
