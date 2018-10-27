@@ -50,11 +50,11 @@ public class Tracker {
         return Arrays.copyOf(this.items, this.position);
     }
 
-    public Item[] findByName(String key) {
+    public Item[] findByName(String name) {
         Item[] items = new Item[position];
         int count = 0;
         for (int index = 0; index < position; index++) {
-            if (this.items[index].getName().equals(key)) {
+            if (this.items[index].getName().equals(name)) {
                 items[count++] = this.items[index];
             }
         }

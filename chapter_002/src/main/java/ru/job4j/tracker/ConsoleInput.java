@@ -23,9 +23,6 @@ public class ConsoleInput implements Input {
                 break;
             }
         }
-//        if (!exit) {
-//            throw new Exception("Outside the boundaries of the range");
-//        }
         return key;
     }
 }
