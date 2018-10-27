@@ -179,11 +179,12 @@ public class MenuTracker {
         public void execute(Input input, Tracker tracker) {
             System.out.println("------------ Поиск заявки по Имени --------------");
             String name = input.ask("Введите Имя заявки: ");
+            Item[] items = tracker.findByName(name);
                 if (tracker.findByName(name).length != 0) {
-                    System.out.println("Найдено кол-во заявок: " + tracker.findByName(name).length);
-                    for (int i = 0; i < tracker.findByName(name).length; i++) {
+                    System.out.println("Найдено кол-во заявок: " + items.length);
+                    for (int i = 0; i < items.length; i++) {
                         System.out.println(String.format("%s. Имя заявки: %s Описание: %s",
-                                i+1, tracker.findByName(name)[i].getName(), tracker.findByName(name)[i].getDescription()));
+                                i+1, items[i].getName(), items[i].getDescription()));
                     }
             } else {
                 System.out.println("Заявка с таким Именем не найдена");
