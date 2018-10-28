@@ -123,12 +123,8 @@ public class MenuTracker {
             System.out.println("------------ Удаление заявки --------------");
             String id = input.ask("Введите Id заявки: ");
             if (tracker.delete(id)) {
-                System.out.println("Заявка с именем " + id + " будет удалена");
-                String theConfir = input.ask("Подтверждаете удаление: y/n ");
-                if (theConfir.equals("y")) {
-                    tracker.delete(id);
-                    System.out.println("Заявка с Id " + id + " удалена");
-                }
+                tracker.delete(id);
+                System.out.println("Заявка с Id " + id + " удалена");
             } else {
                 System.out.println("Заявка с таким Id не найдена");
             }
