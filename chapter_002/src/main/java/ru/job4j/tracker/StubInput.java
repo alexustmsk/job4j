@@ -39,6 +39,6 @@ public class StubInput implements Input {
 
     @Override
     public int ask(String s, List<Integer> range) {
-        return 0;
+        return -1;
     }
 }

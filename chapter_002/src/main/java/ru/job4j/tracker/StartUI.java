@@ -24,8 +24,7 @@ public class StartUI {
         } while (!"y".equals(this.input.ask("Exit? (y/n)")));
     }
 
-
     public static void main(String[] args) {
-        new StartUI(new ConsoleInput()).init();
+        new StartUI(new ValidateInput()).init();
     }
 }
