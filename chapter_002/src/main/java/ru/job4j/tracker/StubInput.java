@@ -39,6 +39,11 @@ public class StubInput implements Input {
 
     @Override
     public int ask(String s, List<Integer> range) {
+        for (Integer i : range) {
+            if (i.equals(Integer.parseInt(s))) {
+                return Integer.parseInt(s);
+            }
+        }
         return -1;
     }
 }
