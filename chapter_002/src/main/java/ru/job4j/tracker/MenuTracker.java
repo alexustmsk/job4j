@@ -148,7 +148,7 @@ public class MenuTracker {
             System.out.println("------------ Поиск заявки по Id --------------");
             String id = input.ask("Введите Id заявки: ");
             Item found = tracker.findById(id);
-            if (id != null) {
+            if (found != null) {
                 System.out.println("Заявка с таким Id найдена:");
                 System.out.println("Имя заявки: " + found.getName()
                         + " Описание заявки: " + found.getDescription());

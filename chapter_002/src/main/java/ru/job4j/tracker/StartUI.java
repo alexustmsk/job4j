@@ -5,13 +5,14 @@ import java.util.List;
 
 public class StartUI {
     private Input input;
+    private Tracker tracker;
 
-    public StartUI(Input input) {
+    public StartUI(Input input, Tracker tracker) {
         this.input = input;
+        this.tracker = tracker;
     }
 
     public void init() {
-        Tracker tracker = new Tracker();
         MenuTracker menu = new MenuTracker(this.input, tracker);
         List<Integer> range = new ArrayList<>();
         menu.fillAction();
@@ -25,6 +26,6 @@ public class StartUI {
     }
 
     public static void main(String[] args) {
-        new StartUI(new ValidateInput()).init();
+        new StartUI(new ValidateInput(), new Tracker()).init();
     }
 }
