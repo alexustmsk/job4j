@@ -32,7 +32,7 @@ public class ValidateInputTest {
     @Test
     public void whenInvalidInput() {
         ValidateInput input = new ValidateInput(new StubInput(new String[]{"invalid", "1"}));
-        input.ask("Enter", new ArrayList<>(1));
+        input.ask("Enter", new ArrayList<>(Collections.singletonList(1)));
         assertThat(
                 this.mem.toString(),
                 is(
@@ -43,8 +43,8 @@ public class ValidateInputTest {
 
     @Test
     public void whenInvalidInput2() {
-        ValidateInput input = new ValidateInput(new StubInput(new String[]{"111", "111"}));
-        input.ask("Enter", new ArrayList<>(Arrays.asList(1)));
+        ValidateInput input = new ValidateInput(new StubInput(new String[]{"22", "1"}));
+        input.ask("Enter", new ArrayList<>(Collections.singletonList(1)));
         assertThat(
                 this.mem.toString(),
                 is(
