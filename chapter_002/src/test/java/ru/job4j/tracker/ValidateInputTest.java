@@ -7,6 +7,9 @@ import org.junit.Test;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
@@ -41,7 +44,7 @@ public class ValidateInputTest {
     @Test
     public void whenInvalidInput2() {
         ValidateInput input = new ValidateInput(new StubInput(new String[]{"111", "111"}));
-        input.ask("Enter", new ArrayList<>(1));
+        input.ask("Enter", new ArrayList<>(Arrays.asList(1)));
         assertThat(
                 this.mem.toString(),
                 is(
