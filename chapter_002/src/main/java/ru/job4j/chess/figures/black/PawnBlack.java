@@ -1,0 +1,34 @@
+package ru.job4j.chess.figures.black;
+
+import ru.job4j.chess.figures.Cell;
+import ru.job4j.chess.figures.Figure;
+
+/**
+ * //TODO add comments.
+ *
+ * @author Alexander Ustyuzhanin (alexustmsk@gmail.com)
+ * @version $Id$
+ * @since 0.1
+ */
+public class PawnBlack implements Figure {
+    private final Cell position;
+
+    public PawnBlack(final Cell position) {
+        this.position = position;
+    }
+
+    @Override
+    public Cell position() {
+        return this.position;
+    }
+
+    @Override
+    public Cell[] way(Cell source, Cell dest) {
+        return new Cell[] {dest};
+    }
+
+    @Override
+    public Figure copy(Cell dest) {
+        return new PawnBlack(dest);
+    }
+}
