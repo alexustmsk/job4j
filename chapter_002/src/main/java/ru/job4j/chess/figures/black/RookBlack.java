@@ -24,7 +24,13 @@ public class RookBlack implements Figure {
 
     @Override
     public Cell[] way(Cell source, Cell dest) {
-        return new Cell[] {dest};
+        Cell[] steps = new Cell[8];
+        for (int i = 0; i < steps.length; i++) {
+            if (source.y == dest.y && source.x != dest.x || source.y != dest.y && source.x == dest.x) {
+                steps = new Cell[]{steps[i], dest};
+            }
+        }
+        return steps;
     }
 
     @Override

@@ -24,7 +24,14 @@ public class QeenBlack implements Figure {
 
     @Override
     public Cell[] way(Cell source, Cell dest) {
-        return new Cell[] {dest};
+        Cell[] steps = new Cell[8];
+        for (int i = 0; i < steps.length; i++) {
+            if (source.y == dest.y && source.x != dest.x || source.y != dest.y && source.x == dest.x ||
+                    (source.y - source.x) == (dest.y - dest.x) || (source.y + source.x) == (dest.y + dest.x)) {
+                steps = new Cell[]{steps[i], dest};
+            }
+        }
+        return steps;
     }
 
     @Override

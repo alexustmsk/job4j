@@ -7,9 +7,9 @@ import ru.job4j.chess.figures.Figure;
  * //TODO add comments.
  *
  * @author Alexander Ustyuzhanin (alexustmsk@gmail.com)
- * @version $Id$
- * @since 0.1
- */
+        * @version $Id$
+        * @since 0.1
+        */
 public class Logic {
 
     private final Figure[] figures = new Figure[32];
