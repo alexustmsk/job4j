@@ -24,10 +24,13 @@ public class RookBlack implements Figure {
 
     @Override
     public Cell[] way(Cell source, Cell dest) {
-        Cell[] steps = new Cell[8];
+        Cell[] steps = new Cell[8]; //Определяем возможность движения фигуры и получаем размер массива
+        int deltaX = source.x - dest.x; // Определяем дельты
+        int deltaY = source.y - dest.y;// Определяем дельты
+        // заполняем массив с проверкой
         for (int i = 0; i < steps.length; i++) {
-            if (source.y == dest.y && source.x != dest.x || source.y != dest.y && source.x == dest.x) {
-                steps = new Cell[]{steps[i], dest};
+            if (move(source, dest)) {
+                steps[i] = Cell.values()[deltaX, deltaY];
             }
         }
         return steps;
@@ -36,5 +39,20 @@ public class RookBlack implements Figure {
     @Override
     public Figure copy(Cell dest) {
         return new RookBlack(dest);
+    }
+
+    public boolean move (Cell source, Cell dest) {
+        try {
+            if (source.y == dest.y && source.x != dest.x || source.y != dest.y && source.x == dest.x) {
+                return true;
+            } catch(ImpossibleMoveException ime){
+                System.out.println("Невозможно ходить");
+            } catch(OccupiedWayException owe){
+                System.out.println("Клетка занята");
+            } catch(FigureNotFoundException fnfe){
+                System.out.println("Фигура не найдена");
+            }
+        }
+        return false;
     }
 }
