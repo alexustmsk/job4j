@@ -53,6 +53,7 @@ public class RookBlack implements Figure {
                 System.out.println("Фигура не найдена");
             }
         }
+
         return false;
     }
 }
